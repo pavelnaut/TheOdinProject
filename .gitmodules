@@ -1,0 +1,3 @@
+[submodule "css-exercises"]
+	path = css-exercises
+	url = git@github.com:pavelnaut/css-exercises.git
