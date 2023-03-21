@@ -6,7 +6,6 @@ let getComputerChoice = () => choices[Math.floor(Math.random() * choices.length)
 let capitalize = (string) => `${string.charAt(0).toUpperCase()}${string.slice(1)}`; 
 
 
-
 function playerWins(playerSelection, computerSelection) {
     switch (playerSelection) {
         case 'rock':
@@ -38,10 +37,19 @@ function playRound(playerSelection, computerSelection) {
     }
   }
    
-function game() {
-    for (let i = 0; i <= 5; i++) {
-        let playerSelection = prompt()
-        console.log(playRound(playerSelection, getComputerChoice()));
-    }
-}
 
+const rockBtn = document.querySelector('#rock-btn');
+const paperBtn = document.querySelector('#paper-btn');
+const scissorsBtn = document.querySelector('#scissors-btn');
+
+rockBtn.addEventListener('click', () => {
+    console.log(playRound('rock', getComputerChoice()));
+});
+
+paperBtn.addEventListener('click', () => {
+    console.log(playRound('paper', getComputerChoice()));
+});
+
+scissorsBtn.addEventListener('click', () => {
+  console.log(playRound('scissors', getComputerChoice()));
+});
