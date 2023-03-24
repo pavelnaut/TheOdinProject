@@ -38,7 +38,8 @@ function playRound(playerSelection, computerSelection) {
   }
    
 const buttonsContainer = document.querySelector('#buttons-container');
+const resultDiv = document.querySelector('#result');
 
 buttonsContainer.addEventListener('click', (event) => {
-  console.log(playRound(event.target.id, getComputerChoice()));
+    resultDiv.textContent = playRound(event.target.id, getComputerChoice())
 });
