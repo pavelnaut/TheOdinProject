@@ -1,4 +1,10 @@
 const choices = ['rock', 'paper', 'scissors']
+const buttonsContainer = document.querySelector('#buttons-container');
+const resultDiv = document.querySelector('#result');
+const scoreDiv = document.querySelector('#score');
+let playerScore = 0;
+let computerScore = 0;
+
 
 let getComputerChoice = () => choices[Math.floor(Math.random() * choices.length)];
 
@@ -31,14 +37,24 @@ function playRound(playerSelection, computerSelection) {
     }
 
     if (playerWins(playerSelection, computerSelection)) {
+        playerScore++;
+        if ((playerScore === 5) & (computerScore < 5)){
+            scoreDiv.textContent = `You won the game! Final score: Player ${playerScore} - Computer ${computerScore}`;
+        } else if ((computerScore < 5) & (playerScore < 5)) {
+            scoreDiv.textContent = `Player ${playerScore} - Computer ${computerScore}`;
+        }
         return `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}`;
     } else {
+        computerScore++;
+        if ((computerScore === 5) & (playerScore < 5)) {
+            scoreDiv.textContent = `You lost the game! Final score: Player ${playerScore} - Computer ${computerScore}`;
+        } else if ((playerScore < 5) & (computerScore < 5)) {
+            scoreDiv.textContent = `Player ${playerScore} - Computer ${computerScore}`;
+        }
         return `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}`;
     }
   }
    
-const buttonsContainer = document.querySelector('#buttons-container');
-const resultDiv = document.querySelector('#result');
 
 buttonsContainer.addEventListener('click', (event) => {
     resultDiv.textContent = playRound(event.target.id, getComputerChoice())
