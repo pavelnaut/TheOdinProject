@@ -1,0 +1,13 @@
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .square {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    border: 1px solid black;
+    transition: background-color 0.5s;
+  }
