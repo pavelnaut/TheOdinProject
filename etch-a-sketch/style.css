@@ -14,9 +14,7 @@ body {
 
 .square {
   aspect-ratio: 1 / 1;
-  width: calc(100% / 16);
   box-sizing: border-box;
-  border: 0.5px solid black;
   transition: background-color 0.5s;
 }
 

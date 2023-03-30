@@ -13,11 +13,14 @@ function darkenColor(color, amount) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function createGrid() {
+function createGrid(numSquares) {
+    let maxNumSquares = 100
     let container = document.querySelector("#container");
-    for (let i = 1; i <= 16*16; i++) {
+    for (let i = 1; i <= numSquares*numSquares; i++) {
       const square = document.createElement('div');
       square.classList.add('square');
+      square.style.width = `calc(100% / ${numSquares})`;
+      square.style.border = `${0.1 + ((maxNumSquares - numSquares) / 100)}px solid black`;
       container.appendChild(square);
     }
 }
@@ -36,5 +39,5 @@ function addEventListeners() {
     });
 }
 
-createGrid();
+createGrid(16);
 addEventListeners();
