@@ -3,6 +3,16 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+h1 {
+  margin: 0;
+}
+
+button {
+  font-size: 20px;
 }
 
 #container {

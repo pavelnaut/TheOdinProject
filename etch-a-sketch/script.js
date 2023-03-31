@@ -15,7 +15,7 @@ function darkenColor(color, amount) {
 
 function createGrid(numSquares) {
     let maxNumSquares = 100
-    let container = document.querySelector("#container");
+    const container = document.querySelector("#container");
     for (let i = 1; i <= numSquares*numSquares; i++) {
       const square = document.createElement('div');
       square.classList.add('square');
@@ -23,6 +23,12 @@ function createGrid(numSquares) {
       square.style.border = `${0.1 + ((maxNumSquares - numSquares) / 100)}px solid black`;
       container.appendChild(square);
     }
+}
+
+function clearGrid() {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
 }
 
 function addEventListeners() {
@@ -39,5 +45,22 @@ function addEventListeners() {
     });
 }
 
-createGrid(16);
-addEventListeners();
+function resetGrid() {
+  const numSquares = parseInt(prompt("Enter number of squares per side (maximum 100):"));
+  if (numSquares && numSquares <= 100) {
+    clearGrid();
+    createGrid(numSquares);
+    addEventListeners();
+  } else {
+    alert("Invalid input!");
+  }
+}
+
+function readyPage() {
+    createGrid(16);
+    addEventListeners();
+    const resetButton = document.querySelector("#reset");
+    resetButton.addEventListener("click", resetGrid);
+}
+
+readyPage();
