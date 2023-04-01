@@ -31,16 +31,33 @@ function clearGrid() {
   }
 }
 
+function changeSquareColor(square) {
+    let currentColor = square.style.backgroundColor || "rgb(255, 255, 255)";
+    if (currentColor === "rgb(255, 255, 255)") {
+        square.style.backgroundColor = randomColor();
+    } else {
+        square.style.backgroundColor = darkenColor(currentColor, 10);
+    }
+}
+
 function addEventListeners() {
     let squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
+        // desktop
         square.addEventListener("mouseenter", () => {
-        let currentColor = square.style.backgroundColor || "rgb(255, 255, 255)";
-        if (currentColor === "rgb(255, 255, 255)") {
-            square.style.backgroundColor = randomColor();
-        } else {
-            square.style.backgroundColor = darkenColor(currentColor, 10);
-        }
+            changeSquareColor(square);
+        });
+        // mobile
+        square.addEventListener("touchmove", (e) => {
+            // Prevent default touch behavior, such as scrolling
+            e.preventDefault();
+            // Loop through all touch points and check which square they are over
+            for (let i = 0; i < e.touches.length; i++) {
+                let element = document.elementFromPoint(e.touches[i].clientX, e.touches[i].clientY);
+                if (element && element.classList.contains("square")) {
+                    changeSquareColor(element);
+                }
+            }
         });
     });
 }
